@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  name         String
+  email        String      @unique
+  passwordHash String      @default("")
+  role         String      @default("Analyst")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  cases        Case[]
+  sharedCases  CaseShare[]
+}
+
+model Case {
+  id              String          @id @default(cuid())
+  caseId          String          @unique
+  title           String
+  codename        String
+  status          String          @default("Active")
+  priority        String          @default("Medium")
+  assignedAnalyst String
+  tags            String          @default("[]")
+  description     String          @default("")
+<<<<<<< HEAD
+  image           String          @default("")
+  urls            String          @default("")
+=======
+>>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  userId          String?
+  user            User?           @relation(fields: [userId], references: [id])
+  shares          CaseShare[]
+  nodes           CaseNode[]
+  edges           CaseEdge[]
+  evidence        Evidence[]
+  timelineEvents  TimelineEvent[]
+  notes           Note[]
+  activityLogs    ActivityLog[]
+}
+
+model CaseShare {
+  id        String   @id @default(cuid())
+  caseId    String
+  userId    String
+  access    String   @default("Viewer")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  case      Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([caseId, userId])
+  @@index([userId])
+}
+
+model CaseNode {
+  id          String     @id @default(cuid())
+  caseId      String
+  type        String
+  title       String
+  subtitle    String     @default("")
+  description String     @default("")
+  image       String     @default("")
+  status      String     @default("Active")
+  priority    String     @default("Medium")
+  tags        String     @default("[]")
+  source      String     @default("")
+  confidence  Int        @default(80)
+  x           Float      @default(0)
+  y           Float      @default(0)
+  metadata    String     @default("{}")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  case        Case       @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  sourceEdges CaseEdge[] @relation("SourceNode")
+  targetEdges CaseEdge[] @relation("TargetNode")
+}
+
+model CaseEdge {
+  id               String    @id @default(cuid())
+  caseId           String
+  sourceNodeId     String
+  targetNodeId     String
+  relationType     String
+  shortDescription String    @default("")
+  confidence       Int       @default(75)
+  color            String    @default("#38bdf8")
+  lineStyle        String    @default("solid")
+  direction        String    @default("one-way")
+  occurredAt       DateTime?
+  source           String    @default("")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  case             Case      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  sourceNode       CaseNode  @relation("SourceNode", fields: [sourceNodeId], references: [id], onDelete: Cascade)
+  targetNode       CaseNode  @relation("TargetNode", fields: [targetNodeId], references: [id], onDelete: Cascade)
+}
+
+model Evidence {
+  id                  String    @id @default(cuid())
+  caseId              String
+  title               String
+  fileType            String    @default("Document")
+  fileName            String    @default("")
+  filePath            String    @default("")
+  fileSize            Int       @default(0)
+  md5                 String    @default("")
+  sha1                String    @default("")
+  sha256              String    @default("")
+  source              String    @default("")
+  collectedBy         String    @default("")
+  collectionDate      DateTime?
+  chainOfCustodyNotes String    @default("")
+  relatedNodeIds      String    @default("[]")
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  case                Case      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+}
+
+model TimelineEvent {
+  id                 String   @id @default(cuid())
+  caseId             String
+  occurredAt         DateTime
+  title              String
+  eventType          String
+  description        String   @default("")
+  relatedNodeIds     String   @default("[]")
+  relatedEvidenceIds String   @default("[]")
+  severity           String   @default("Medium")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  case               Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+}
+
+model Note {
+  id            String   @id @default(cuid())
+  caseId        String
+  title         String
+  body          String
+  tags          String   @default("[]")
+  pinned        Boolean  @default(false)
+  linkedNodeIds String   @default("[]")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  case          Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  caseId    String?
+  actor     String   @default("Local Analyst")
+  action    String
+  entity    String
+  entityId  String   @default("")
+  details   String   @default("{}")
+  createdAt DateTime @default(now())
+  case      Case?    @relation(fields: [caseId], references: [id], onDelete: Cascade)
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  color     String   @default("#38bdf8")
+  createdAt DateTime @default(now())
+}
