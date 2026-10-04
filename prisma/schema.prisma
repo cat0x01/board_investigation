@@ -29,11 +29,8 @@ model Case {
   assignedAnalyst String
   tags            String          @default("[]")
   description     String          @default("")
-<<<<<<< HEAD
   image           String          @default("")
   urls            String          @default("")
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   userId          String?

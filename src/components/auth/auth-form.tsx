@@ -1,34 +1,21 @@
 "use client";
 
-<<<<<<< HEAD
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BadgeCheck, BriefcaseBusiness, Building2, Eye, EyeOff, LockKeyhole, Mail, ShieldCheck, UserRound, UserRoundPlus } from "lucide-react";
-=======
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { LogIn, UserPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Field, Input } from "@/components/ui/field";
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
   const router = useRouter();
   const [error, setError] = useState("");
-<<<<<<< HEAD
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
   const isRegister = mode === "register";
 
   async function submit(formData: FormData) {
     setError("");
-<<<<<<< HEAD
     if (isRegister && formData.get("password") !== formData.get("confirmPassword")) {
       setError("Passwords do not match.");
       return;
@@ -120,48 +107,5 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
       <div className="pointer-events-none absolute bottom-20 left-8 hidden size-32 rounded-full border border-amber-400/10 md:block"><div className="absolute inset-4 rounded-full border border-amber-400/10" /><div className="absolute left-1/2 top-0 h-full w-px bg-amber-400/10" /><div className="absolute left-0 top-1/2 h-px w-full bg-amber-400/10" /></div>
       <BadgeCheck className="pointer-events-none absolute bottom-28 right-10 hidden size-5 text-amber-400/10 lg:block" />
     </main>
-=======
-    const payload = Object.fromEntries(formData);
-    const response = await fetch(`/api/auth/${mode}`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    if (!response.ok) {
-      const body = await response.json().catch(() => ({}));
-      setError(body.error ?? "Authentication failed.");
-      return;
-    }
-    router.push("/dashboard");
-    router.refresh();
-  }
-
-  return (
-    <form action={submit} className="glass-panel grid w-full max-w-md gap-4 rounded-md p-6">
-      <div>
-        <div className="text-sm uppercase tracking-[0.22em] text-cyan-300">{isRegister ? "Create account" : "Secure login"}</div>
-        <h1 className="mt-2 text-2xl font-bold text-white">{isRegister ? "Register" : "Login"}</h1>
-      </div>
-      {isRegister && (
-        <>
-          <Field label="Name"><Input name="name" required autoComplete="name" /></Field>
-          <Field label="Role"><Input name="role" defaultValue="Analyst" required /></Field>
-        </>
-      )}
-      <Field label="Email"><Input name="email" type="email" required autoComplete="email" /></Field>
-      <Field label="Password"><Input name="password" type="password" required minLength={isRegister ? 8 : 1} autoComplete={isRegister ? "new-password" : "current-password"} /></Field>
-      {error && <div className="rounded-md border border-red-400/30 bg-red-500/10 p-3 text-sm text-red-100">{error}</div>}
-      <Button type="submit" variant="primary">
-        {isRegister ? <UserPlus className="size-4" /> : <LogIn className="size-4" />}
-        {isRegister ? "Create Account" : "Login"}
-      </Button>
-      <div className="text-sm text-slate-400">
-        {isRegister ? "Already registered?" : "No account yet?"}{" "}
-        <Link href={isRegister ? "/login" : "/register"} className="text-cyan-200 hover:text-cyan-100">
-          {isRegister ? "Login" : "Register"}
-        </Link>
-      </div>
-    </form>
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
   );
 }

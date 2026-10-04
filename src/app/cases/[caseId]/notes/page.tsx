@@ -27,11 +27,7 @@ export default async function NotesPage({ params, searchParams }: Props) {
   return (
     <AppShell>
       <div className="space-y-6 p-5 lg:p-8">
-<<<<<<< HEAD
         <div className="flex flex-wrap items-end justify-between gap-4"><div><div className="text-sm uppercase tracking-[0.22em] text-amber-300">Analyst notes</div><h1 className="mt-2 text-3xl font-bold text-white">{record.title}</h1></div><CaseTabs caseId={record.id} active="notes" /></div>
-=======
-        <div className="flex flex-wrap items-end justify-between gap-4"><div><div className="text-sm uppercase tracking-[0.22em] text-cyan-300">Analyst notes</div><h1 className="mt-2 text-3xl font-bold text-white">{record.title}</h1></div><CaseTabs caseId={record.id} active="notes" /></div>
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
         <div className="grid gap-6 xl:grid-cols-[1fr_540px]">
           <section className="space-y-4">
             <form className="relative">

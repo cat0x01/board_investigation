@@ -22,19 +22,12 @@ export default async function BoardPage({ params }: Props) {
   return (
     <AppShell>
       <div className="border-b border-slate-800 bg-slate-950/50 px-5 py-4">
-<<<<<<< HEAD
         <div className="flex flex-wrap items-center gap-3">
           <span className="border border-amber-400/30 bg-amber-400/10 px-2 py-1 font-mono text-[10px] font-bold tracking-[0.22em] text-amber-300">CLASSIFIED</span>
           <h1 className="text-xl font-bold text-white">{record.title}</h1>
           <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-xs text-amber-100">{record.status}</span>
           <span className="rounded-full border border-slate-700 bg-slate-900 px-2 py-0.5 text-xs text-slate-300">{record.userId === currentUser.id ? "Owner" : `Shared · ${record.shares[0]?.access ?? "Viewer"}`}</span>
           <span className="ml-auto hidden font-mono text-[10px] tracking-[0.18em] text-amber-300/60 md:block">INTELLIGENCE LINK ANALYSIS // {record.caseId}</span>
-=======
-        <div className="flex items-center gap-3">
-          <h1 className="text-xl font-bold text-white">{record.title}</h1>
-          <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-xs text-emerald-100">{record.status}</span>
-          <span className="rounded-full border border-slate-700 bg-slate-900 px-2 py-0.5 text-xs text-slate-300">{record.userId === currentUser.id ? "Owner" : `Shared · ${record.shares[0]?.access ?? "Viewer"}`}</span>
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
         </div>
       </div>
       <BoardClient caseId={record.id} initialNodes={nodes} initialEdges={edges} editable={canEdit} />

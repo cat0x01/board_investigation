@@ -1,31 +1,19 @@
 @import "tailwindcss";
 
 :root {
-<<<<<<< HEAD
   --background: #030303;
   --foreground: #f5f5f4;
   --panel: rgba(10, 10, 9, 0.9);
   --line: rgba(250, 204, 21, 0.16);
   --font-app-sans: Arial, Helvetica, sans-serif;
   --font-app-mono: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace;
-=======
-  --background: #05070b;
-  --foreground: #e8eef8;
-  --panel: rgba(12, 18, 29, 0.78);
-  --line: rgba(148, 163, 184, 0.18);
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-<<<<<<< HEAD
   --font-sans: var(--font-app-sans);
   --font-mono: var(--font-app-mono);
-=======
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 }
 
 * {
@@ -35,19 +23,11 @@
 body {
   min-height: 100vh;
   background:
-<<<<<<< HEAD
     radial-gradient(circle at 18% 12%, rgba(250, 204, 21, 0.055), transparent 28rem),
     linear-gradient(135deg, #030303 0%, #090908 48%, #000 100%);
   color: var(--foreground);
   font-family: var(--font-app-sans);
   letter-spacing: 0.005em;
-=======
-    radial-gradient(circle at 18% 12%, rgba(30, 64, 175, 0.18), transparent 28rem),
-    radial-gradient(circle at 80% 14%, rgba(185, 28, 28, 0.12), transparent 24rem),
-    linear-gradient(135deg, #05070b 0%, #09111d 45%, #040609 100%);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 }
 
 button,
@@ -58,17 +38,12 @@ select {
 }
 
 .glass-panel {
-<<<<<<< HEAD
   background: linear-gradient(145deg, rgba(17, 17, 16, 0.94), rgba(3, 3, 3, 0.9));
-=======
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.86), rgba(2, 6, 23, 0.72));
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
   border: 1px solid var(--line);
   box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(18px);
 }
 
-<<<<<<< HEAD
 ::selection {
   background: rgba(34, 211, 238, 0.25);
   color: white;
@@ -83,12 +58,6 @@ select {
     linear-gradient(rgba(250, 204, 21, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(250, 204, 21, 0.045) 1px, transparent 1px),
     radial-gradient(circle at 50% 45%, rgba(250, 204, 21, 0.035), transparent 35%);
-=======
-.intel-grid {
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
   background-size: 28px 28px;
 }
 
@@ -105,7 +74,6 @@ select {
 }
 
 .react-flow__edge-path {
-<<<<<<< HEAD
   filter: drop-shadow(0 0 7px rgba(250, 204, 21, 0.28));
 }
 
@@ -121,9 +89,6 @@ select {
   fill-opacity: 0.96;
   stroke: rgba(250, 204, 21, 0.55);
   stroke-width: 1px;
-=======
-  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.18));
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 }
 
 .markdown-preview h1,
@@ -143,7 +108,6 @@ select {
   padding: 0.08rem 0.28rem;
   background: rgba(2, 6, 23, 0.72);
 }
-<<<<<<< HEAD
 
 .auth-terminal {
   background:
@@ -207,5 +171,3 @@ select {
   border-color: rgba(250, 204, 21, 0.65);
   box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.08);
 }
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756

@@ -3,10 +3,7 @@ import { getCurrentUserFromRequest, publicUserSelect, readableCaseWhere } from "
 import { prisma } from "@/lib/db/prisma";
 import { encodeCaseData, parseCase } from "@/lib/db/serde";
 import { caseSchema } from "@/lib/validators/caselink";
-<<<<<<< HEAD
 import { persistImageValue } from "@/lib/persist-image";
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 
 export async function GET(request: Request) {
   const user = await getCurrentUserFromRequest(request);
@@ -24,10 +21,7 @@ export async function POST(request: Request) {
     const user = await getCurrentUserFromRequest(request);
     if (!user) return fail("Authentication required.", 401);
     const data = await readJson(request, caseSchema);
-<<<<<<< HEAD
     data.image = await persistImageValue(data.image);
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     const existing = await prisma.case.findUnique({ where: { caseId: data.caseId } });
     if (existing) return fail("Case ID is already in use.", 409);
     const created = await prisma.case.create({ data: { ...encodeCaseData(data), userId: user.id, assignedAnalyst: data.assignedAnalyst || user.name } });

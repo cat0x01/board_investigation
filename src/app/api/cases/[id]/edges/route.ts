@@ -21,14 +21,11 @@ export async function POST(request: Request, { params }: Params) {
     if (!user) return fail("Authentication required.", 401);
     if (!(await canWriteCase(id, user.id))) return fail("You do not have permission to edit this board.", 403);
     const data = await readJson(request, edgeSchema);
-<<<<<<< HEAD
     if (data.sourceNodeId === data.targetNodeId) return fail("A node cannot be connected to itself.", 422);
     const linkedNodes = await prisma.caseNode.count({
       where: { caseId: id, id: { in: [data.sourceNodeId, data.targetNodeId] } }
     });
     if (linkedNodes !== 2) return fail("Both nodes must belong to this case.", 422);
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     const edge = await prisma.caseEdge.create({ data: { ...data, caseId: id } });
     await logActivity(id, "created", "edge", edge.id, { relationType: edge.relationType });
     return ok(edge, { status: 201 });

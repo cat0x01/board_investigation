@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-<<<<<<< HEAD
 import { Briefcase, FilePlus2, ShieldCheck } from "lucide-react";
 
 export function Sidebar() {
@@ -38,77 +37,3 @@ export function Sidebar() {
     </aside>
   );
 }
-=======
-import { BarChart3, Bell, BookOpen, Briefcase, FileArchive, FileText, FolderKanban, LayoutDashboard, Link2, NotebookPen, Settings, Tags, UserRound, UsersRound, type LucideIcon } from "lucide-react";
-import { clsx } from "clsx";
-
-const nav = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/cases", label: "Cases", icon: Briefcase },
-  { href: "/cases", label: "Case Board", icon: FolderKanban },
-  { href: "/cases", label: "Evidence", icon: FileArchive },
-  { href: "/cases", label: "Timeline", icon: BookOpen },
-  { href: "/cases", label: "Persons", icon: UsersRound },
-  { href: "/cases", label: "Notes", icon: NotebookPen },
-  { href: "/settings", label: "Reports", icon: BarChart3 },
-  { href: "/settings", label: "Settings", icon: Settings }
-];
-
-export function Sidebar() {
-  const pathname = usePathname();
-  return (
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 border-r border-slate-800/80 bg-black/45 backdrop-blur-xl lg:block">
-      <div className="flex h-20 items-center gap-3 border-b border-slate-800/80 px-6">
-        <div className="grid size-12 place-items-center rounded-full border border-amber-300/50 bg-blue-950 shadow-[0_0_28px_rgba(251,191,36,0.14)]">
-          <FbiSealLogo />
-        </div>
-        <div>
-          <div className="text-base font-bold text-white">CAT0X01 INVESTIGATIOONS</div>
-          <div className="text-xs text-slate-400">Investigation Workspace</div>
-        </div>
-      </div>
-      <nav className="space-y-6 p-4">
-        <div>
-          <div className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Main</div>
-          <div className="space-y-1">
-            {nav.slice(0, 7).map((item) => <NavItem key={item.label} item={item} active={pathname === item.href || (item.label === "Case Board" && pathname.includes("/board")) || (item.label === "Evidence" && pathname.includes("/evidence")) || (item.label === "Timeline" && pathname.includes("/timeline")) || (item.label === "Persons" && pathname.includes("/persons")) || (item.label === "Notes" && pathname.includes("/notes"))} />)}
-          </div>
-        </div>
-        <div>
-          <div className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Case Tools</div>
-          <div className="space-y-1">
-            {[
-              { href: "/cases", label: "Tags", icon: Tags },
-              { href: "/cases", label: "Files", icon: FileText },
-              { href: "/cases", label: "Links", icon: Link2 }
-            ].map((item) => <NavItem key={item.label} item={item} active={false} />)}
-          </div>
-        </div>
-        <div>
-          <div className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Admin</div>
-          <div className="space-y-1">
-            <NavItem item={{ href: "/settings", label: "Users", icon: UserRound }} active={pathname === "/settings"} />
-            <NavItem item={{ href: "/settings", label: "Audit Log", icon: Bell }} active={false} />
-          </div>
-        </div>
-      </nav>
-    </aside>
-  );
-}
-
-function FbiSealLogo() {
-  return (
-    <Image src="/logo.png" alt="CAT0X01 logo" width={40} height={40} className="size-10 rounded-full object-cover" priority />
-  );
-}
-
-function NavItem({ item, active }: { item: { href: string; label: string; icon: LucideIcon }; active: boolean }) {
-  const Icon = item.icon;
-  return (
-    <Link href={item.href} className={clsx("flex h-11 items-center gap-3 rounded-md px-3 text-sm transition", active ? "bg-slate-800/90 text-white" : "text-slate-400 hover:bg-slate-900/80 hover:text-slate-100")}>
-      <Icon className="size-4" />
-      {item.label}
-    </Link>
-  );
-}
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756

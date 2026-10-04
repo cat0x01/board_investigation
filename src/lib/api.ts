@@ -27,7 +27,6 @@ export function handleError(error: unknown) {
 }
 
 export async function logActivity(caseId: string | null, action: string, entity: string, entityId = "", details: object = {}) {
-<<<<<<< HEAD
   try {
     const encoded = encodeActivityDetails(details);
     const safeDetails = encoded.length <= 10_000
@@ -39,17 +38,6 @@ export async function logActivity(caseId: string | null, action: string, entity:
   } catch {
     // Audit logging must never turn an already-successful user mutation into a failed request.
   }
-=======
-  await prisma.activityLog.create({
-    data: {
-      caseId,
-      action,
-      entity,
-      entityId,
-      details: encodeActivityDetails(details)
-    }
-  });
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 }
 
 export function safeSearchParam(url: string, name: string) {

@@ -65,11 +65,8 @@ export type CaseRecord = {
   assignedAnalyst: string;
   tags: string[];
   description: string;
-<<<<<<< HEAD
   image: string;
   urls: string;
-=======
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
   createdAt: string;
   updatedAt: string;
 };

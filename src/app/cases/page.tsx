@@ -1,25 +1,16 @@
 import Link from "next/link";
-<<<<<<< HEAD
 import { Activity, AlertTriangle, Archive, BookOpen, FileText, Folder, Network, Pencil, Plus } from "lucide-react";
 import { AppShell } from "@/components/layout/app-shell";
 import { CaseDeleteButton } from "@/components/case-delete-button";
 import { CaseForm } from "@/components/forms/case-form";
 import { GenerateReportButton } from "@/components/generate-report-button";
 import { getCurrentUserFromCookies, readableCaseWhere } from "@/lib/current-user";
-=======
-import { Plus, Trash2 } from "lucide-react";
-import { CaseDeleteButton } from "@/components/case-delete-button";
-import { AppShell } from "@/components/layout/app-shell";
-import { CaseForm } from "@/components/forms/case-form";
-import { getCurrentUserFromCookies, publicUserSelect, readableCaseWhere } from "@/lib/current-user";
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 import { prisma } from "@/lib/db/prisma";
 import { formatDate, priorityTone } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
 export default async function CasesPage() {
-<<<<<<< HEAD
   const user = await getCurrentUserFromCookies();
   const cases = await prisma.case.findMany({ where: readableCaseWhere(user.id), orderBy: { updatedAt: "desc" }, include: { _count: { select: { nodes: true, notes: true } } } });
   const active = cases.filter((item) => item.status === "Active").length;
@@ -82,75 +73,4 @@ export default async function CasesPage() {
       </div>
     </div>
   </div></AppShell>;
-=======
-  const currentUser = await getCurrentUserFromCookies();
-  const cases = await prisma.case.findMany({
-    where: readableCaseWhere(currentUser.id),
-    orderBy: { updatedAt: "desc" },
-    include: { user: { select: publicUserSelect }, shares: { where: { userId: currentUser.id } }, _count: { select: { nodes: true, edges: true, evidence: true, notes: true } } }
-  });
-
-  return (
-    <AppShell>
-      <div className="grid gap-6 p-5 lg:grid-cols-[1fr_420px] lg:p-8">
-        <section className="space-y-4">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <div className="text-sm uppercase tracking-[0.22em] text-cyan-300">Case registry</div>
-              <h1 className="mt-2 text-3xl font-bold text-white">Cases</h1>
-            </div>
-            <Link href="#create-case" className="inline-flex h-10 items-center gap-2 rounded-md border border-cyan-400/50 bg-cyan-400/15 px-3 text-sm font-medium text-cyan-50 hover:bg-cyan-400/25">
-              <Plus className="size-4" />
-              Add Case
-            </Link>
-          </div>
-          <div className="grid gap-4">
-            {cases.map((item) => (
-              <article key={item.id} className="glass-panel rounded-md p-5">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <Link href={`/cases/${item.id}`} className="text-xl font-semibold text-white hover:text-cyan-200">{item.title}</Link>
-                    <div className="mt-1 text-sm text-slate-400">{item.caseId} · {item.codename} · Updated {formatDate(item.updatedAt)}</div>
-                    <div className="mt-2 text-xs text-slate-500">{item.userId === currentUser.id ? "Owned by you" : `Shared by ${item.user?.name ?? "another user"} · ${item.shares[0]?.access ?? "Viewer"}`}</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`rounded-md border px-2 py-1 text-xs ${priorityTone(item.priority)}`}>{item.priority}</span>
-                    <span className="rounded-md border border-emerald-400/30 bg-emerald-400/10 px-2 py-1 text-xs text-emerald-100">{item.status}</span>
-                  </div>
-                </div>
-                <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">{item.description}</p>
-                <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-400">
-                  <span>{item._count.nodes} nodes</span>
-                  <span>{item._count.edges} relations</span>
-                  <span>{item._count.evidence} evidence files</span>
-                  <span>{item._count.notes} notes</span>
-                </div>
-                <div className="mt-4 flex gap-2">
-                  <Link href={`/cases/${item.id}/board`} className="rounded-md border border-cyan-400/40 bg-cyan-400/10 px-3 py-2 text-sm font-medium text-cyan-50">Open Board</Link>
-                  <Link href={`/cases/${item.id}/timeline`} className="rounded-md border border-slate-700 px-3 py-2 text-sm text-slate-200">Timeline</Link>
-                  <CaseDeleteButton id={item.id} />
-                </div>
-              </article>
-            ))}
-            {cases.length === 0 && (
-              <div className="glass-panel rounded-md p-10 text-center">
-                <Plus className="mx-auto size-8 text-cyan-300" />
-                <h2 className="mt-4 text-xl font-semibold text-white">No cases yet</h2>
-                <p className="mt-2 text-sm text-slate-400">Create a case or run the seed script to load Operation Nightfall.</p>
-              </div>
-            )}
-          </div>
-        </section>
-        <aside id="create-case" className="scroll-mt-6 space-y-4">
-          <h2 className="text-lg font-semibold text-white">Create Case</h2>
-          <CaseForm currentUserName={currentUser.name} />
-          <div className="glass-panel rounded-md p-4 text-sm text-slate-400">
-            <Trash2 className="mb-2 size-4 text-red-300" />
-            Delete controls are available on each case card and inside each case workspace.
-          </div>
-        </aside>
-      </div>
-    </AppShell>
-  );
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
 }

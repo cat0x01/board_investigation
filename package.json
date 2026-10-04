@@ -3,13 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-<<<<<<< HEAD
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-=======
-    "dev": "next dev",
-    "build": "next build",
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     "start": "next start",
     "lint": "eslint",
     "prisma:generate": "prisma generate",
@@ -18,40 +13,26 @@
   },
   "dependencies": {
     "@prisma/client": "4.16.2",
-<<<<<<< HEAD
     "@xyflow/react": "^12.10.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.25.0",
-=======
     "clsx": "^2.1.1",
     "dompurify": "^3.3.1",
     "framer-motion": "^12.25.0",
     "html-to-image": "^1.11.13",
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     "jspdf": "^3.0.4",
     "lucide-react": "^0.561.0",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-<<<<<<< HEAD
-    "react-hook-form": "^7.68.0",
-    "react-markdown": "^10.1.0",
-=======
-    "@xyflow/react": "^12.10.0",
     "react-hook-form": "^7.68.0",
     "react-markdown": "^10.1.0",
     "recharts": "^3.6.0",
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     "remark-gfm": "^4.0.1",
     "zod": "^4.2.1",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-<<<<<<< HEAD
-=======
     "@types/dompurify": "^3.2.0",
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

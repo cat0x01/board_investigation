@@ -11,7 +11,6 @@ import { Field, Input, Textarea } from "@/components/ui/field";
 export function NoteForm({ caseId }: { caseId: string }) {
   const router = useRouter();
   const [body, setBody] = useState("## Findings\n\n");
-<<<<<<< HEAD
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -38,21 +37,6 @@ export function NoteForm({ caseId }: { caseId: string }) {
 
   return (
     <form onSubmit={(event) => { event.preventDefault(); void submit(new FormData(event.currentTarget)); }} className="glass-panel grid gap-4 rounded-md p-5">
-=======
-
-  async function submit(formData: FormData) {
-    const response = await fetch(`/api/cases/${caseId}/notes`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(formData))
-    });
-    if (!response.ok) throw new Error("Unable to save note.");
-    router.refresh();
-  }
-
-  return (
-    <form action={submit} className="glass-panel grid gap-4 rounded-md p-5">
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
       <h2 className="text-lg font-semibold text-white">Create Note</h2>
       <Field label="Title"><Input name="title" required /></Field>
       <Field label="Tags"><Input name="tags" placeholder="intel, interview, priority" /></Field>
@@ -67,12 +51,8 @@ export function NoteForm({ caseId }: { caseId: string }) {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
       {error && <p role="alert" className="rounded-md border border-red-400/30 bg-red-400/10 p-3 text-sm text-red-200">{error}</p>}
       <Button type="submit" variant="primary" disabled={saving}><Save className="size-4" /> {saving ? "Saving..." : "Save Note"}</Button>
-=======
-      <Button type="submit" variant="primary"><Save className="size-4" /> Save Note</Button>
->>>>>>> b94b362dc1c9ae54477d93b700bfac957ca2f756
     </form>
   );
 }
